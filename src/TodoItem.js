@@ -1,4 +1,4 @@
-const TodoItem = () => {
+const TodoItem = ({todo}) => {
     const itemStyle = {
         display: "flex", alignItems: "centor",
         padding: 10,
@@ -10,7 +10,7 @@ const TodoItem = () => {
     return (
         <div style={itemStyle}>
             <input type="checkbox" checked={false} style={checkboxStyle}></input>
-            <div style={textStyle}>Task: do something</div>
+            <div style={textStyle}>{todo.text}</div>
             <button style={btnStyle}>削除</button>
         </div>
     );
