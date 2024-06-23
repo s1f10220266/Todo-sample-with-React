@@ -14,12 +14,15 @@ function App() {
     };
     setTodos((todos) => [...todos, newTodo]);
   }
+  const handleRemove = (deleteId) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== deleteId));
+  }
   return (
     <div className="App">
       <div className="App-title">Todoアプリ</div>
       <div className="App-content">
         <TodoInput onAdd={handleAdd}/>
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onRemove={handleRemove}/>
       </div>
     </div>
   );

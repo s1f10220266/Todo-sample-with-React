@@ -1,4 +1,4 @@
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, onRemove}) => {
     const itemStyle = {
         display: "flex", alignItems: "centor",
         padding: 10,
@@ -11,7 +11,7 @@ const TodoItem = ({todo}) => {
         <div style={itemStyle}>
             <input type="checkbox" checked={false} style={checkboxStyle}></input>
             <div style={textStyle}>{todo.text}</div>
-            <button style={btnStyle}>削除</button>
+            <button style={btnStyle} onClick={() => onRemove(todo.id)}>削除</button>
         </div>
     );
 }
