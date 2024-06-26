@@ -77,6 +77,7 @@ function App() {
         <TodoInput onAdd={handleAdd} />
         <TodoList tasks={tasks} onRemove={handleRemove} onToggle={handleToggle} onUpdate={handleUpdate} />
       </div>
+      <div style={{}}>＊Todoのタイトルをクリックすると編集できます</div>
     </div>
   );
 }

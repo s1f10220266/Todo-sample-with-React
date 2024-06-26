@@ -6,21 +6,24 @@ const TodoItem = ({ task, onRemove, onToggle, onUpdate }) => {
   const [newDescription, setNewDescription] = useState(task.description);
 
   const itemStyle = {
-    display: "flex", alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
     padding: 10,
     borderTop: "1px solid #dee2e6"
   };
-  const checkboxStyle = { cursor: "pointer" };
+  const checkboxStyle = { cursor: "pointer", marginRight: 10 };
   const titleStyle = {
     flex: 1,
-    marginLeft: 10,
     textDecoration: task.isFinished ? 'line-through' : 'none'
   };
   const descriptionStyle = {
     flex: 1,
-    marginLeft: 10
+    marginTop: 5,
+    resize: "none"
   };
-  const btnStyle = { cursor: "pointer" };
+  const saveBtnStyle = { cursor: "pointer", marginTop: 10, marginLeft: 20, width: "120px" };
+  const deleteBtnStyle = { cursor: "pointer", marginTop: 10, marginLeft: 340, width: "120px" };
 
   const handleSave = () => {
     onUpdate(task.id, newTitle, newDescription);
@@ -29,38 +32,48 @@ const TodoItem = ({ task, onRemove, onToggle, onUpdate }) => {
 
   return (
     <div style={itemStyle}>
-      <input
-        type="checkbox"
-        checked={task.isFinished}
-        style={checkboxStyle}
-        onChange={() => onToggle(task.id)}
-      />
-      {isEditing ? (
-        <div style={{ flex: 1, marginLeft: 10 }}>
+      <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+        <input
+          type="checkbox"
+          checked={task.isFinished}
+          style={checkboxStyle}
+          onChange={() => onToggle(task.id)}
+        />
+        {isEditing ? (
           <input
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
+            style={{ flex: 1 }}
           />
-          <textarea
-            value={newDescription}
-            onChange={(e) => setNewDescription(e.target.value)}
-          />
-          <button onClick={handleSave}>保存/戻る</button>
-        </div>
-      ) : (
-        <div style={{ flex: 1 }}>
+        ) : (
           <div style={titleStyle} onClick={() => setIsEditing(true)}>
             {task.title}
           </div>
-          {task.description && (
-            <div style={descriptionStyle}>
-              {task.description}
-            </div>
-          )}
-        </div>
+        )}
+      </div>
+      {isEditing ? (
+        <>
+          <div style={{display: "flex", alignItems: "center"}}>
+            <textarea
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
+              placeholder="メモを入力できます"
+              style={{marginTop: 5, resize: "none", width: "340px" }}
+            />
+            <button style={saveBtnStyle} onClick={handleSave}>保存/戻る</button>
+          </div>
+        </>
+      ) : (
+        task.description && (
+          <div style={descriptionStyle}>
+            {task.description}
+          </div>
+        )
       )}
-      <button style={btnStyle} onClick={() => onRemove(task.id)}>削除</button>
+      {!isEditing && (
+        <button style={deleteBtnStyle} onClick={() => onRemove(task.id)}>削除</button>
+      )}
     </div>
   );
 };
