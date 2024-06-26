@@ -2,12 +2,16 @@
   "name": "todo-sample-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.2",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "mysql": "^2.18.1",
+    "mysql2": "^3.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
@@ -17,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-node": "nodemon backend/index.js"
   },
   "eslintConfig": {
     "extends": [
