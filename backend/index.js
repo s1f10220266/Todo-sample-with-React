@@ -9,14 +9,14 @@ app.use(cors());
 app.use(express.json());
 
 //ポート番号を指定
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 //mysqlと接続するための設定
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Midnight',
-    database: 'reactTodoSample' // データベース名を指定
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 // MySQLに接続
