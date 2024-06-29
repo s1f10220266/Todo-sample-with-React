@@ -3,6 +3,7 @@ services:
     name: reactTodoSampleApp
     env: node
     plan: free
+    repo: https://github.com/s1f10220266/Todo-sample-with-React.git
     branch: main
     buildCommand: npm install && npm run build
     startCommand: serve -s build
@@ -14,6 +15,7 @@ services:
     name: TodoTestServer
     env: node
     plan: free
+    repo: https://github.com/s1f10220266/Todo-sample-with-React.git
     branch: main
     buildCommand: npm install
     startCommand: npm run start-node
@@ -39,7 +41,9 @@ services:
 
 databases:
   - name: TodoTestDatabase
-    #engine: mysql
-    databaseName: TodoTest
+    kind: mysql
     plan: free
-    user: TodoTest
+    properties:
+      databaseName: todotestdb
+      user: todotestuser
+      password: Midnight
