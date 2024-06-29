@@ -39,7 +39,7 @@ services:
 
 databases:
   - name: TodoTestDatabase
-    engine: mysql
+    #engine: mysql
     databaseName: TodoTest
     plan: free
     user: TodoTest
