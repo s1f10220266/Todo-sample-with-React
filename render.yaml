@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: reactTodoSampleApp
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install && npm run build
+    startCommand: serve -s build
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: TodoTestServer
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm run start-node
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_HOST
+        fromDatabase:
+          name: TodoTestDatabase
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: TodoTestDatabase
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: TodoTestDatabase
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: TodoTestDatabase
+          property: database
+
+databases:
+  - name: TodoTestDatabase
+    engine: mysql
+    version: 5.7
+    plan: free
