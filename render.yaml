@@ -40,5 +40,6 @@ services:
 databases:
   - name: TodoTestDatabase
     engine: mysql
-    version: 5.7
+    databaseName: TodoTest
     plan: free
+    user: TodoTest
