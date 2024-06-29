@@ -20,7 +20,8 @@ const TodoItem = ({ task, onRemove, onToggle, onUpdate }) => {
   const descriptionStyle = {
     flex: 1,
     marginTop: 5,
-    resize: "none"
+    resize: "none",
+    marginLeft: 60
   };
   const saveBtnStyle = { cursor: "pointer", marginTop: 10, marginLeft: 20, width: "120px" };
   const deleteBtnStyle = { cursor: "pointer", marginTop: 10, marginLeft: 340, width: "120px" };
